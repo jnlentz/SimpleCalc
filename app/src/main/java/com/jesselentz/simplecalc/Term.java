@@ -32,6 +32,7 @@ public class Term {
           }
     }
 
+    // sums the values of all terms in the stack, and creates a new term at the end containing the total
     public void combine(double total, char operator) {
         double temp = total;
         if (operator == '+') {

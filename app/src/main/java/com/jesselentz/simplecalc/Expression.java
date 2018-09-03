@@ -12,17 +12,14 @@ public class Expression {
     protected double total;
 
     public Expression() {
-        this.display = new String();
-        this.currentTerm = new String();
+        this.display = "";
+        this.currentTerm = "";
     }
 
+    // adds new input digit to both display and currentTerm
     public void appendDigit(char digit) {
         this.display += digit;
         this.currentTerm += digit;
-    }
-
-    public void displayOperator(char operator) {
-        this.display += operator;
     }
 
     // creates new item in que for addition/subtraction, immediately applies multiplication/division to first item in que
@@ -30,22 +27,24 @@ public class Expression {
         if (this.stack == null) {
             this.stack = new Term(currentTerm, operator);
             this.display += operator;
-            this.currentTerm = new String();
+            this.currentTerm = "";
             System.out.println("Stack created, first value is " + this.stack.value);
         } else {
             stack.append(this.currentTerm, operator);
             this.display += operator;
-            this.currentTerm = new String();
+            this.currentTerm = "";
         }
     }
 
+    // clears all class data
     public void clear() {
-        this.display = new String();
-        this.currentTerm = new String();
+        this.display = "";
+        this.currentTerm = "";
         this.stack = null;
         this.total = 0;
     }
 
+    // ensures user can only input 1 decimal per term
     public boolean decimalCheck() {
         for (int i = currentTerm.length()-1; i >= 0; i--) {
             if (currentTerm.charAt(i) == '.') {
@@ -55,14 +54,7 @@ public class Expression {
         return false;
     }
 
-    public double returnTotal(Term stack) {
-        if (stack.next != null) {
-            return returnTotal(stack.next);
-        } else {
-            return stack.value;
-        }
-    }
-
+    // trims ".0" off of displayed totals after being converted from double to string
     public String formatTotal(double total) {
         String temp = Double.toString(total);
         if (temp.charAt(temp.length() - 2) == '.' && temp.charAt(temp.length() - 1) == '0') {
@@ -71,8 +63,26 @@ public class Expression {
             return temp;
         }
     }
-    public void equals() {
+
+    // returns stack object to be stored in previousExpressions
+    public Term getExpression() {
         stack.combine(0, '+');
+        return this.stack;
+    }
+    // returns total from stack after stack.combine() has been called
+    public double returnTotal(Term stack) {
+        if (stack.next != null) {
+            return returnTotal(stack.next);
+        } else {
+            return stack.value;
+        }
+    }
+
+    /* retrieves total, converts from double to string, and sets it as the value of both display and currentTerm.
+       This allows the user to continue working with their total after pressing the '=' key as if they had entered
+       the number themselves.
+     */
+    public void equals() {
         double total = returnTotal(this.stack);
         this.display = formatTotal(total);
         this.currentTerm = formatTotal(total);

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+    History previousExpressions = new History();
     Expression current = new Expression();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void decimalKey (View view) {
-       if (current.decimalCheck() == false) {
+       if (!current.decimalCheck()) {
            current.appendDigit('.');
        }
         current.view.setText(current.display);
@@ -106,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
     public void equalsKey (View view) {
         if (current.currentTerm.length() > 0) {
             current.appendTerm('=');
+            previousExpressions.appendExpression(current.getExpression());
             current.equals();
             current.view.setText(current.display);
         }
