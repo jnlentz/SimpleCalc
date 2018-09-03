@@ -16,6 +16,7 @@ public class Term {
         this.operator = operator;
     }
 
+    // immediately applies multiplication/division, appends new term for subtraction and addition
     public void append(String currentTerm, char operator) {
           if (this.next != null) {
               this.next.append(currentTerm, operator);

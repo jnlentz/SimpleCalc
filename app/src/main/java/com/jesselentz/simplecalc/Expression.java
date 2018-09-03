@@ -8,7 +8,7 @@ public class Expression {
     public EditText view;
     protected String display; // contains full expression for display purposes only
     protected String currentTerm; // contains term currently being entered
-    protected Term stack; // contains data for all terms and operations entered, FIFO
+    protected Term stack; // contains data for all terms and operations entered, not a real stack data structure
     protected double total;
 
     public Expression() {
@@ -22,7 +22,7 @@ public class Expression {
         this.currentTerm += digit;
     }
 
-    // creates new item in que for addition/subtraction, immediately applies multiplication/division to first item in que
+    // initializes new term linked list, or appends new term object to end of existing list
     public void appendTerm(char operator) {
         if (this.stack == null) {
             this.stack = new Term(currentTerm, operator);

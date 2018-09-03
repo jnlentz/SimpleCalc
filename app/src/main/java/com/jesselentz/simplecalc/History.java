@@ -1,5 +1,5 @@
 package com.jesselentz.simplecalc;
-
+// Stores expressions for future use, currently inaccessible from the app
 public class History {
     protected Term expression;
     protected History next;
