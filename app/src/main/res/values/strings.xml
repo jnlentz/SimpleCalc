@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Simple Calculator</string>
+    <string name="one_key">1</string>
+    <string name="plus_key">+</string>
+    <string name="two_key">2</string>
+    <string name="three_key">3</string>
+    <string name="four_key">4</string>
+    <string name="five_key">5</string>
+    <string name="six_key">6</string>
+    <string name="seven_key">7</string>
+    <string name="eight_key">8</string>
+    <string name="nine_key">9</string>
+    <string name="zero_key">0</string>
+    <string name="minus_key">-</string>
+    <string name="multiplication_key">x</string>
+    <string name="division_key">/</string>
+    <string name="equals_key">=</string>
+    <string name="clear_button">C</string>
+    <string name="decimal_key">.</string>
+    <string name="sign_key">+/-</string>
+</resources>
